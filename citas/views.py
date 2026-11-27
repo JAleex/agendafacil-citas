@@ -1,4 +1,4 @@
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 
 from .forms import CitaForm
 from .models import Cita
@@ -18,3 +18,12 @@ def nueva_cita(request):
     else:
         form = CitaForm()
     return render(request, "citas/formulario.html", {"form": form})
+
+
+# HU-02: cancelar una cita
+def cancelar_cita(request, cita_id):
+    cita = get_object_or_404(Cita, id=cita_id)
+    if request.method == "POST":
+        cita.estado = "cancelada"
+        cita.save()
+    return redirect("lista_citas")
