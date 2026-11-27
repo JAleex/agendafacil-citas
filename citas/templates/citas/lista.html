@@ -3,6 +3,16 @@
 {% block contenido %}
 <h2>Citas agendadas</h2>
 
+<!-- HU-03: filtro por fecha -->
+<form method="get">
+  <label>Filtrar por fecha:
+    <input type="date" name="fecha" value="{{ fecha }}">
+  </label>
+  <button type="submit" class="boton">Filtrar</button>
+  <a href="{% url 'lista_citas' %}">Ver todas</a>
+</form>
+<br>
+
 {% if citas %}
 <table>
   <tr>
@@ -11,6 +21,8 @@
     <th>Cliente</th>
     <th>Teléfono</th>
     <th>Servicio</th>
+    <th>Estado</th>
+    <th></th>
   </tr>
   {% for cita in citas %}
   <tr>
@@ -19,10 +31,19 @@
     <td>{{ cita.cliente }}</td>
     <td>{{ cita.telefono }}</td>
     <td>{{ cita.get_servicio_display }}</td>
+    <td>{{ cita.get_estado_display }}</td>
+    <td>
+      {% if cita.estado == "activa" %}
+      <form method="post" action="{% url 'cancelar_cita' cita.id %}">
+        {% csrf_token %}
+        <button type="submit" class="boton boton-rojo">Cancelar</button>
+      </form>
+      {% endif %}
+    </td>
   </tr>
   {% endfor %}
 </table>
 {% else %}
-<p>No hay citas agendadas.</p>
+<p>No hay citas para mostrar.</p>
 {% endif %}
 {% endblock %}
