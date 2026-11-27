@@ -13,10 +13,11 @@ class CitaForm(forms.ModelForm):
         }
 
     # HU-01: no permitir dos citas en la misma fecha y hora
+    # HU-02: las citas canceladas ya no ocupan el horario
     def clean(self):
         datos = super().clean()
         fecha = datos.get("fecha")
         hora = datos.get("hora")
-        if fecha and hora and Cita.objects.filter(fecha=fecha, hora=hora).exists():
+        if fecha and hora and Cita.objects.filter(fecha=fecha, hora=hora, estado="activa").exists():
             raise forms.ValidationError("Ya hay una cita agendada en esa fecha y hora. Elige otro horario.")
         return datos
