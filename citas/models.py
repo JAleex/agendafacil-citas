@@ -20,6 +20,11 @@ class Cita(models.Model):
     fecha = models.DateField("Fecha")
     hora = models.TimeField("Hora")
     estado = models.CharField("Estado", max_length=10, choices=ESTADOS, default="activa")
+    # HU-04: autorización de tratamiento de datos (Ley 1581 de 2012)
+    acepta_datos = models.BooleanField(
+        "Autorizo el tratamiento de mis datos personales (Ley 1581 de 2012)",
+        default=False,
+    )
     creada = models.DateTimeField(auto_now_add=True)
 
     class Meta:
