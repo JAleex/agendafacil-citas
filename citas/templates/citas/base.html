@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AgendaFácil</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 850px; margin: 0 auto; padding: 20px; background: #f5f7fa; color: #222; }
+    header { display: flex; justify-content: space-between; align-items: center; }
+    h1 { color: #1f6feb; }
+    table { width: 100%; border-collapse: collapse; background: white; }
+    th, td { padding: 8px; border-bottom: 1px solid #ddd; text-align: left; }
+    th { background: #e8eefc; }
+    .boton { background: #1f6feb; color: white; padding: 8px 14px; border: none; border-radius: 4px; text-decoration: none; cursor: pointer; }
+    .boton-rojo { background: #c62828; }
+    .errorlist { color: #c62828; }
+    form p { margin-bottom: 12px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>AgendaFácil</h1>
+    <a class="boton" href="{% url 'nueva_cita' %}">Nueva cita</a>
+  </header>
+  {% block contenido %}{% endblock %}
+</body>
+</html>

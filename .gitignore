@@ -1,0 +1,17 @@
+# Entorno virtual de Python
+venv/
+.venv/
+
+# Archivos que genera Python
+__pycache__/
+*.pyc
+
+# Base de datos local (cada quien crea la suya con migrate)
+db.sqlite3
+
+# Variables de entorno y claves
+.env
+
+# Editores
+.vscode/
+.idea/

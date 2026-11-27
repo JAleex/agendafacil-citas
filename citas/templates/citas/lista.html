@@ -1,0 +1,28 @@
+{% extends "citas/base.html" %}
+
+{% block contenido %}
+<h2>Citas agendadas</h2>
+
+{% if citas %}
+<table>
+  <tr>
+    <th>Fecha</th>
+    <th>Hora</th>
+    <th>Cliente</th>
+    <th>Teléfono</th>
+    <th>Servicio</th>
+  </tr>
+  {% for cita in citas %}
+  <tr>
+    <td>{{ cita.fecha|date:"d/m/Y" }}</td>
+    <td>{{ cita.hora|time:"H:i" }}</td>
+    <td>{{ cita.cliente }}</td>
+    <td>{{ cita.telefono }}</td>
+    <td>{{ cita.get_servicio_display }}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% else %}
+<p>No hay citas agendadas.</p>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends "citas/base.html" %}
+
+{% block contenido %}
+<h2>Nueva cita</h2>
+
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit" class="boton">Guardar</button>
+  <a href="{% url 'lista_citas' %}">Volver</a>
+</form>
+{% endblock %}
